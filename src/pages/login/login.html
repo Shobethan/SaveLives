@@ -1,0 +1,55 @@
+<ion-content no-padding no-bounce id="main">
+
+  <!-- 50% of the top screen with the app logo -->
+  <ion-grid style="padding-top: 50px;">
+    <ion-row justify-content-center align-items-center style="height: 32vh;">
+      <ion-col col-3 justify-content-center>
+        <img src="../../assets/imgs/app_logo.png" />
+      </ion-col>
+    </ion-row>
+
+    <!-- segment with facebook connect button -->
+    <ion-row justify-content-center align-items-center id="fb-login">
+      <ion-col col-12 justify-content-center>
+        <button ion-button block round strong color="fb-blue" class="btn-fb-login">
+          Login with&nbsp;<b>Facebook</b>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <!-- main login form -->
+    <ion-row justify-content-center id="login-form">
+      <ion-col col-12 justify-content-center>
+
+        <!-- Email field : required-->
+        <ion-item no-padding>
+          <ion-label floating color="primary">
+            <h2>Email* :</h2>
+          </ion-label>
+          <ion-input clearInput type="email" [(ngModel)]="user.email" name="email" value="shobe@gmail.com"></ion-input>
+        </ion-item>
+        
+        <!-- Password field : required -->
+        <ion-item no-padding>
+          <ion-label floating color="primary">
+            <h2>Password* :</h2>
+          </ion-label>
+          <ion-input clearInput type="password" [(ngModel)]="user.password" name="password" value="password"></ion-input>
+        </ion-item>
+
+        <!-- Link to go to forgot password page -->
+        <button ion-button block clear strong color="blue" style="margin-top: 15px;" (click)="forgot_password(user.email)">Forgot Password?</button>
+
+        <!-- Two different login buttons for with & without empty required fields -->
+        <button ion-button block strong class="btn-login" *ngIf="!user.email || !user.password" (click)="blank_login()">LOGIN</button>
+        <button ion-button block strong class="btn-login" *ngIf="user.email && user.password" (click)="login(user)">LOGIN</button>
+        
+        <!-- Link to register page -->
+        <button ion-button block clear strong color="dark" style="margin-top: 15px;" (click)="set_register_page()">
+          Don't have an account?&nbsp;
+          <b>REGISTER</b>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

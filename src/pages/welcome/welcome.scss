@@ -1,0 +1,20 @@
+page-welcome {
+  // for the whole welcome page
+  #main {
+    background: color($colors, bgcolor);
+    background-image: url("../../assets/imgs/app_top_deco.png");
+    background-position: center top;
+    background-repeat: repeat-x;
+    background-size: 70px;
+  }
+  
+  // for register button
+  .btn-register {
+    filter: drop-shadow(0px 5px 10px #79a7ff);
+  }
+  
+  // for login button
+  .btn-login {
+    filter: drop-shadow(0px 5px 10px #ff6f57);
+  }
+}

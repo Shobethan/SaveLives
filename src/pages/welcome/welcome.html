@@ -1,0 +1,31 @@
+<ion-content no-padding no-bounce id="main">
+  
+  <!-- 90% of the top screen with Save Lives app logo -->
+  <ion-grid style="height: 90%;">
+    <ion-row justify-content-center align-items-center style="height: 100%;">
+      <ion-col col-6>
+        <img src="../../assets/imgs/app_logo.png" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- 10% of the bottom screen with buttons to redirect users to'register' page and 'login' page -->
+  <ion-grid style="height: 10%;">
+    <ion-row no-padding align-items-end>
+
+      <!-- Register button -->
+      <ion-col col-6>
+        <button ion-button block large strong text-uppercase color="blue" class="btn-register" (click)="set_register_page()">
+          <h2 no-margin>Register</h2>
+        </button>
+      </ion-col>
+
+      <!-- Login button -->
+      <ion-col col-6>
+        <button ion-button block large text-uppercase class="btn-login" (click)="set_login_page()">
+          <h2 no-margin>Login</h2>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
