@@ -10,4 +10,5 @@ import { ProfilePage } from './profile';
     IonicPageModule.forChild(ProfilePage),
   ],
 })
+
 export class ProfilePageModule {}

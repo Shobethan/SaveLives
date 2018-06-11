@@ -1,4 +1,4 @@
-// imports necessary packages for the welcome page
+// imports necessary packages for the login page
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -47,12 +47,13 @@ export class LoginPage {
     loader.present();
 
     try {
+      
       // try login with email and password
       await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
       loader.dismiss();
       this.navCtrl.setRoot(TabsPage);
 
-      // show toast message of success login
+      // show toast message of successful login
       let toast = this.toastCtrl.create({
         message: "You have successfully logged in",
         duration: 3000,

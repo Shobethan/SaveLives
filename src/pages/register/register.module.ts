@@ -10,4 +10,5 @@ import { RegisterPage } from './register';
     IonicPageModule.forChild(RegisterPage),
   ],
 })
+
 export class RegisterPageModule {}

@@ -18,6 +18,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { NeedsPage } from '../pages/needs/needs';
 import { EventsPage } from '../pages/events/events';
 import { ProfilePage } from '../pages/profile/profile';
+import { ProfileFirstPage } from '../pages/profile-first/profile-first';
+import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
 import { SettingsPage } from '../pages/settings/settings';
 
 // imports miscellaneous packages for the app
@@ -33,6 +35,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     NeedsPage,
     EventsPage,
     ProfilePage,
+    ProfileFirstPage,
+    ProfileEditPage,
     SettingsPage,
     TabsPage
   ],
@@ -52,6 +56,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     NeedsPage,
     EventsPage,
     ProfilePage,
+    ProfileFirstPage,
+    ProfileEditPage,
     SettingsPage,
     TabsPage
   ],

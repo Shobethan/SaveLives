@@ -1,18 +1,61 @@
-<!--
-  Generated template for the RegisterPage page.
+<ion-content no-padding no-bounce id="main">
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+  <!-- 29% of the top screen with the app logo -->
+  <ion-grid style="padding-top: 50px;">
+    <ion-row justify-content-center align-items-center style="height: 29vh;">
+      <ion-col col-3 justify-content-center>
+        <img src="../../assets/imgs/app_logo.png" />
+      </ion-col>
+    </ion-row>
 
-  <ion-navbar>
-    <ion-title>register</ion-title>
-  </ion-navbar>
+    <!-- Segment with facebook connect button -->
+    <ion-row justify-content-center align-items-center id="fb-register">
+      <ion-col col-12 justify-content-center>
+        <button ion-button block round strong color="fb-blue" class="btn-fb-register">
+          Register with&nbsp;
+          <b>Facebook</b>
+        </button>
+      </ion-col>
+    </ion-row>
 
-</ion-header>
+    <!-- Main register form -->
+    <ion-row justify-content-center id="register-form">
+      <ion-col col-12 justify-content-center>
 
+        <!-- Email field : required -->
+        <ion-item no-padding>
+          <ion-label floating color="primary">
+            <h2>Email* :</h2>
+          </ion-label>
+          <ion-input clearInput type="email" [(ngModel)]="user.email" name="email"></ion-input>
+        </ion-item>
 
-<ion-content padding>
+        <!-- Password field : required -->
+        <ion-item no-padding>
+          <ion-label floating color="primary">
+            <h2>Password* :</h2>
+          </ion-label>
+          <ion-input clearInput type="password" [(ngModel)]="user.password" name="password"></ion-input>
+        </ion-item>
 
+        <!-- Confirm password field : required -->
+        <ion-item no-padding>
+          <ion-label floating color="primary">
+            <h2>Confirm Password* :</h2>
+          </ion-label>
+          <ion-input clearInput type="password" [(ngModel)]="confirm_password" name="confirm_password"></ion-input>
+        </ion-item>
+
+        <!-- Two different register buttons for with & without empty required fields -->
+        <button ion-button block strong class="btn-register" *ngIf="!user.email || !user.password || !confirm_password" (click)="blank_register()">SIGN UP</button>
+        <button ion-button block strong class="btn-register" *ngIf="user.email && user.password && confirm_password" (click)="register(user, confirm_password)">SIGN UP</button>
+
+        <!-- Link to login page -->
+        <button ion-button block clear strong color="dark" style="margin-top: 15px;" (click)="set_login_page()">
+          Already have an account?&nbsp;
+          <b text-uppercase>Login</b>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
