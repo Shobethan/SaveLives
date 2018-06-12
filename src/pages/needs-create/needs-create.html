@@ -1,0 +1,95 @@
+<!-- header segment of the page -->
+<ion-header>
+  <ion-navbar>
+    <ion-title>CREATE NEW NEED</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<!-- body segment of the page -->
+<ion-content no-padding no-bounce id="main">
+  <ion-grid>
+    <ion-row justify-content-center id="needs-form">
+      <ion-col>
+
+        <!-- Blood group field (selection) : required -->
+        <ion-item no-padding>
+          <ion-label color="primary" floating>
+            <h2>Blood Group* :</h2>
+          </ion-label>
+          <ion-select okText="Select" cancelText="Dismiss" [(ngModel)]="need.bloodgroup" name="bloodgroup">
+            <ion-option value="A+">A+</ion-option>
+            <ion-option value="A-">A-</ion-option>
+            <ion-option value="B+">B+</ion-option>
+            <ion-option value="B-">B-</ion-option>
+            <ion-option value="AB+">AB+</ion-option>
+            <ion-option value="AB-">AB-</ion-option>
+            <ion-option value="O+">O+</ion-option>
+            <ion-option value="O-">O-</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Need before field (datepicker) : required -->
+        <ion-item no-padding>
+          <ion-label color="primary" floating>
+            <h2>Need Before* :</h2>
+          </ion-label>
+          <ion-datetime displayFormat="MMM DD, YYYY" [min]="today" max="2020" [(ngModel)]="need.needbefore" name="needbefore"></ion-datetime>
+        </ion-item>
+
+        <!-- Description field (text area) -->
+        <ion-item no-padding>
+          <ion-label color="primary" floating>
+            <h2>Description :</h2>
+          </ion-label>
+          <ion-textarea type="text" [(ngModel)]="need.desc" name="desc" (input)="adjustTextarea($event);"></ion-textarea>
+        </ion-item>
+
+        <!-- District field (selection) : required -->
+        <ion-item no-padding>
+          <ion-label color="primary" floating>
+            <h2>District* :</h2>
+          </ion-label>
+          <ion-select okText="Select" cancelText="Dismiss" [(ngModel)]="need.district" name="district">
+            <ion-option value="Ampara">Ampara</ion-option>
+            <ion-option value="Anuradhapura">Anuradhapura</ion-option>
+            <ion-option value="Badulla">Badulla</ion-option>
+            <ion-option value="Batticaloa">Batticaloa</ion-option>
+            <ion-option value="Colombo">Colombo</ion-option>
+            <ion-option value="Galle">Galle</ion-option>
+            <ion-option value="Gampaha">Gampaha</ion-option>
+            <ion-option value="Hambantota">Hambantota</ion-option>
+            <ion-option value="Jaffna">Jaffna</ion-option>
+            <ion-option value="Kalutara">Kalutara</ion-option>
+            <ion-option value="Kandy">Kandy</ion-option>
+            <ion-option value="Kegalle">Kegalle</ion-option>
+            <ion-option value="Kilinochchi">Kilinochchi</ion-option>
+            <ion-option value="Kurunegala">Kurunegala</ion-option>
+            <ion-option value="Mannar">Mannar</ion-option>
+            <ion-option value="Matale">Matale</ion-option>
+            <ion-option value="Matara">Matara</ion-option>
+            <ion-option value="Monaragala">Monaragala</ion-option>
+            <ion-option value="Mullaitivu">Mullaitivu</ion-option>
+            <ion-option value="Nuwara Eliya">Nuwara Eliya</ion-option>
+            <ion-option value="Polonnaruwa">Polonnaruwa</ion-option>
+            <ion-option value="Puttalam">Puttalam</ion-option>
+            <ion-option value="Ratnapura">Ratnapura</ion-option>
+            <ion-option value="Trincomalee">Trincomalee</ion-option>
+            <ion-option value="Vavuniya">Vavuniya</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- City field -->
+        <ion-item no-padding>
+          <ion-label color="primary" floating>
+            <h2>City :</h2>
+          </ion-label>
+          <ion-input clearInput type="text" [(ngModel)]="need.city" name="city"></ion-input>
+        </ion-item>
+
+        <!-- Two different create buttons for with & without empty required fields -->
+        <button ion-button block strong class="btn-create" *ngIf="!need.bloodgroup || !need.needbefore || !need.district" (click)="blank_create()">CREATE</button>
+        <button ion-button block strong class="btn-create" *ngIf="need.bloodgroup && need.needbefore && need.district" (click)="create(need)">CREATE</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

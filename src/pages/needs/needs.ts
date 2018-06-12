@@ -1,25 +1,34 @@
+// imports necessary packages for the needs page
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Needs } from '../../models/needs';
 
-/**
- * Generated class for the NeedsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { NeedsCreatePage } from "../needs-create/needs-create";
 
 @IonicPage()
 @Component({
   selector: 'page-needs',
   templateUrl: 'needs.html',
 })
+
 export class NeedsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  need = {} as Needs;
+  needRef$: AngularFireList<Needs>;
+
+  createdby: string;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private afAuth: AngularFireAuth,
+    private afDatabase: AngularFireDatabase) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NeedsPage');
+  // push needs create page on the top of this page
+  push__needs_create_page() {
+    this.navCtrl.push(NeedsCreatePage);
   }
-
 }

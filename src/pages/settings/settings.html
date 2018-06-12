@@ -1,18 +1,106 @@
-<!--
-  Generated template for the SettingsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
+<!-- header segment of the page -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>settings</ion-title>
+    <ion-title>SETTINGS</ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<!-- body segment of the page -->
+<ion-content no-padding id="main">
+  <ion-grid no-padding>
 
-<ion-content padding>
+    <!-- Personal settings -->
+    <h3 ion-text text-uppercase color="card-header" style="margin-top: 30px; padding-left: 10px;">Personal</h3>
+    <ion-list no-border style="margin-bottom: 12px">
 
+      <!-- Enrolled needs -->
+      <ion-item>
+        <ion-icon name='md-heart' item-start color="primary"></ion-icon>
+        Enrolled Needs
+        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
+      </ion-item>
+
+      <!-- Privacy settings -->
+      <ion-item>
+        <ion-icon name='md-finger-print' item-start color="blue"></ion-icon>
+        Privacy Settings
+        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
+      </ion-item>
+
+      <!-- Location settings -->
+      <ion-item>
+        <ion-icon name='md-locate' item-start color="blue"></ion-icon>
+        Location
+        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
+      </ion-item>
+    </ion-list>
+
+    <!-- Application settings -->
+    <h3 ion-text text-uppercase color="card-header" style="padding-left: 10px;">Application</h3>
+    <ion-list no-border style="margin-bottom: 12px">
+
+      <!-- App notification settings -->
+      <ion-item>
+        <ion-icon name='ios-notifications' item-start color="green"></ion-icon>
+        Notification
+        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
+      </ion-item>
+
+      <!-- Help & support details -->
+      <ion-item>
+        <ion-icon name='md-help-buoy' item-start color="primary"></ion-icon>
+        Help & Support
+        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
+      </ion-item>
+    </ion-list>
+
+    <!-- General settings -->
+    <h3 ion-text text-uppercase color="card-header" style="padding-left: 10px;">General</h3>
+    <ion-list no-border style="margin-bottom: 12px">
+
+      <!-- Privacy policy details -->
+      <ion-item>
+        <ion-icon name='md-lock' item-start color="blue"></ion-icon>
+        Privacy Policy
+        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
+      </ion-item>
+
+      <!-- Terms & condition details -->
+      <ion-item>
+        <ion-icon name='md-hand' item-start color="green"></ion-icon>
+        Terms & Conditions
+        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
+      </ion-item>
+
+      <!-- Report any bug related to the app -->
+      <ion-item>
+        <ion-icon name='ios-bug' item-start color="brown"></ion-icon>
+        Report Bug
+        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
+      </ion-item>
+
+      <!-- Contact us -->
+      <ion-item>
+        <ion-icon name='md-contacts' item-start color="purple"></ion-icon>
+        Contact Us
+        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
+      </ion-item>
+
+      <!-- Log out -->
+      <ion-item>
+        <ion-icon name='md-log-out' item-start color="primary"></ion-icon>
+        Log out
+      </ion-item>
+    </ion-list>
+
+    <!-- Current version of the app -->
+    <ion-list inset no-border>
+      <ion-item>
+        Version
+        <ion-note item-end>
+          1.0.0
+        </ion-note>
+      </ion-item>
+    </ion-list>
+  </ion-grid>
 </ion-content>

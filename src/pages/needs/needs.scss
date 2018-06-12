@@ -1,3 +1,48 @@
 page-needs {
 
+    // for the whole needs page
+    #main {
+        background: color($colors, bgcolor);
+    }
+
+    // for the every needs card
+    .deco {
+    background-image: url("../../assets/imgs/need_bottom_icon_deco.png"), url("../../assets/imgs/need_bottom_deco.png") !important;
+    background-position: right 33px bottom 33px, right bottom !important;
+    background-size: 25px, 140px !important;
+    background-repeat: no-repeat, no-repeat !important;
+    height: 200px !important;
+    }
+
+    // for make all cards inside scroll, vertical
+    .scroll-zoom-wrapper {
+        white-space: nowrap;
+    }
+
+    // for all cards in the page
+    ion-card {
+        width: 320px !important;
+        display: inline-block;
+    }
+
+    // for all scroll content in the page
+    ion-scroll {
+        min-height: 230px; 
+        height: 230px;       
+
+            .scroll-content {
+            padding: 0px !important;
+        }    
+    }
+
+    // for all cards in this page for all platform 
+    .card-ios, .card-md, .card-wp {
+        margin: 12px;
+        border-radius: 2px;
+        width: calc(100% - 24px);
+        font-size: 1.4rem;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 5px 12px rgba(255, 111, 87,0.4) !important;
+    }
 }

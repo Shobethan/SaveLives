@@ -17,6 +17,7 @@ import { RegisterPage } from '../pages/register/register';
 import { TabsPage } from '../pages/tabs/tabs';
 import { NeedsPage } from '../pages/needs/needs';
 import { EventsPage } from '../pages/events/events';
+import { NeedsCreatePage } from '../pages/needs-create/needs-create';
 import { ProfilePage } from '../pages/profile/profile';
 import { ProfileFirstPage } from '../pages/profile-first/profile-first';
 import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
@@ -33,6 +34,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage,
     RegisterPage,
     NeedsPage,
+    NeedsCreatePage,
     EventsPage,
     ProfilePage,
     ProfileFirstPage,
@@ -54,6 +56,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage,
     RegisterPage,
     NeedsPage,
+    NeedsCreatePage,
     EventsPage,
     ProfilePage,
     ProfileFirstPage,
