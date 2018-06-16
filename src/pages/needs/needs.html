@@ -17,137 +17,79 @@
     <!-- Emergency needs (vertical scroll) -->
     <h3 ion-text text-uppercase color="card-header" style="margin-top: 30px; margin-bottom:0px; padding-left: 12px;">Emergency Needs</h3>
     <ion-scroll scrollX="true" style="white-space: nowrap;">
-
-      <!-- Card no.01 -->
-      <ion-card class="deco">
-        <ion-card-content>
-          <ion-row no-padding no-margin>
-            <ion-col no-padding no-margin>
-              <h1 style="font-size: 60px;" ion-text text-uppercase color="primary">A+</h1>
-              <br>
-            </ion-col>
-            <ion-col no-padding no-margin>
-              <p ion-text text-right padding-top color="gray-aaa">2 donors enrolled</p>
-            </ion-col>
-          </ion-row>
-          <h2 ion-text text-uppercase color="dark">Jaffna</h2>
-          <br>
-          <p ion-text color="gray-aaa">On or Before</p>
-          <p ion-text padding-bottom color="dark">
-            <b>25.06.2018</b>
-          </p>
-        </ion-card-content>
-      </ion-card>
-
-      <!-- Card no.02 -->
-      <ion-card class="deco">
-        <ion-card-content>
-          <ion-row no-padding no-margin>
-            <ion-col no-padding no-margin>
-              <h1 style="font-size: 60px;" ion-text text-uppercase color="primary">AB+</h1>
-              <br>
-            </ion-col>
-            <ion-col no-padding no-margin>
-              <p ion-text text-right padding-top color="gray-aaa">5 donors enrolled</p>
-            </ion-col>
-          </ion-row>
-          <h2 ion-text text-uppercase color="dark">Colombo</h2>
-          <br>
-          <p ion-text color="gray-aaa">On or Before</p>
-          <p ion-text padding-bottom color="dark">
-            <b>26.06.2018</b>
-          </p>
-        </ion-card-content>
-      </ion-card>
-
-      <!-- Card no.03 -->
-      <ion-card class="deco">
-        <ion-card-content>
-          <ion-row no-padding no-margin>
-            <ion-col no-padding no-margin>
-              <h1 style="font-size: 60px;" ion-text text-uppercase color="primary">O-</h1>
-              <br>
-            </ion-col>
-            <ion-col no-padding no-margin>
-              <p ion-text text-right padding-top color="gray-aaa">7 donors enrolled</p>
-            </ion-col>
-          </ion-row>
-          <h2 ion-text text-uppercase color="dark">Polonnaruwa</h2>
-          <br>
-          <p ion-text color="gray-aaa">On or Before</p>
-          <p ion-text padding-bottom color="dark">
-            <b>28.06.2018</b>
-          </p>
-        </ion-card-content>
-      </ion-card>
+      <ion-list>
+        <ion-card class="ion-card-needs deco" *ngFor="let needEmg of needEmergencyData | async">
+          <ion-card-content>
+            <ion-row no-padding no-margin>
+              <ion-col no-padding no-margin>
+                <h1 style="font-size: 60px;" ion-text text-uppercase color="primary">{{needEmg.bloodgroup}}</h1>
+                <br>
+              </ion-col>
+              <ion-col no-padding no-margin>
+                <p ion-text text-right padding-top color="gray-aaa">2 donors enrolled</p>
+              </ion-col>
+            </ion-row>
+            <h2 ion-text text-uppercase color="dark">{{needEmg.district}}</h2>
+            <br>
+            <p ion-text color="gray-aaa">On or Before</p>
+            <p ion-text padding-bottom color="dark">
+              <b>{{needEmg.needbefore}}</b>
+            </p>
+          </ion-card-content>
+        </ion-card>
+        <ion-card class="ion-card-more">
+          <ion-card-content style="height: 100%;">
+            <ion-row no-padding no-margin align-items-center style="height: 100%;">
+              <ion-col no-padding no-margin text-center>
+                <h1>
+                  <ion-icon name="md-arrow-round-forward" color="white"></ion-icon>
+                </h1>
+                <br>
+                <h2 ion-text text-uppercase color="white">More Needs...</h2>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
     </ion-scroll>
 
     <!-- Nearby needs (vertical scroll) -->
     <h3 ion-text text-uppercase color="card-header" style="margin-top: 30px; margin-bottom:0px; padding-left: 12px;">Nearby Needs</h3>
     <ion-scroll scrollX="true" style="white-space: nowrap;">
-
-      <!-- Card no.01 -->
-      <ion-card class="deco">
-        <ion-card-content>
-          <ion-row no-padding no-margin>
-            <ion-col no-padding no-margin>
-              <h1 style="font-size: 60px;" ion-text text-uppercase color="primary">AB-</h1>
-              <br>
-            </ion-col>
-            <ion-col no-padding no-margin>
-              <p ion-text text-right padding-top color="gray-aaa">No donors enrolled</p>
-            </ion-col>
-          </ion-row>
-          <h2 ion-text text-uppercase color="dark">Colombo</h2>
-          <br>
-          <p ion-text color="gray-aaa">On or Before</p>
-          <p ion-text padding-bottom color="dark">
-            <b>20.06.2018</b>
-          </p>
-        </ion-card-content>
-      </ion-card>
-
-      <!-- Card no.02 -->
-      <ion-card class="deco">
-        <ion-card-content>
-          <ion-row no-padding no-margin>
-            <ion-col no-padding no-margin>
-              <h1 style="font-size: 60px;" ion-text text-uppercase color="primary">A+</h1>
-              <br>
-            </ion-col>
-            <ion-col no-padding no-margin>
-              <p ion-text text-right padding-top color="gray-aaa">2 donors enrolled</p>
-            </ion-col>
-          </ion-row>
-          <h2 ion-text text-uppercase color="dark">Colombo</h2>
-          <br>
-          <p ion-text color="gray-aaa">On or Before</p>
-          <p ion-text padding-bottom color="dark">
-            <b>22.06.2018</b>
-          </p>
-        </ion-card-content>
-      </ion-card>
-
-      <!-- Card no.03 -->
-      <ion-card class="deco">
-        <ion-card-content>
-          <ion-row no-padding no-margin>
-            <ion-col no-padding no-margin>
-              <h1 style="font-size: 60px;" ion-text text-uppercase color="primary">B+</h1>
-              <br>
-            </ion-col>
-            <ion-col no-padding no-margin>
-              <p ion-text text-right padding-top color="gray-aaa">3 donors enrolled</p>
-            </ion-col>
-          </ion-row>
-          <h2 ion-text text-uppercase color="dark">Colombo</h2>
-          <br>
-          <p ion-text color="gray-aaa">On or Before</p>
-          <p ion-text padding-bottom color="dark">
-            <b>22.06.2018</b>
-          </p>
-        </ion-card-content>
-      </ion-card>
+      <ion-list>
+        <ion-card class="ion-card-needs deco" *ngFor="let needNrby of needNearbyData | async">
+          <ion-card-content>
+            <ion-row no-padding no-margin>
+              <ion-col no-padding no-margin>
+                <h1 style="font-size: 60px;" ion-text text-uppercase color="primary">{{needNrby.bloodgroup}}</h1>
+                <br>
+              </ion-col>
+              <ion-col no-padding no-margin>
+                <p ion-text text-right padding-top color="gray-aaa">2 donors enrolled</p>
+              </ion-col>
+            </ion-row>
+            <h2 ion-text text-uppercase color="dark">{{needNrby.district}}</h2>
+            <br>
+            <p ion-text color="gray-aaa">On or Before</p>
+            <p ion-text padding-bottom color="dark">
+              <b>{{needNrby.needbefore}}</b>
+            </p>
+          </ion-card-content>
+        </ion-card>
+        <ion-card class="ion-card-more">
+          <ion-card-content style="height: 100%;">
+            <ion-row no-padding no-margin align-items-center style="height: 100%;">
+              <ion-col no-padding no-margin text-center>
+                <h1>
+                  <ion-icon name="md-arrow-round-forward" color="white"></ion-icon>
+                </h1>
+                <br>
+                <h2 ion-text text-uppercase color="white">More Needs...</h2>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
     </ion-scroll>
   </ion-grid>
 </ion-content>

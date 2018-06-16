@@ -20,9 +20,17 @@ page-needs {
     }
 
     // for all cards in the page
-    ion-card {
+    .ion-card-needs {
         width: 320px !important;
         display: inline-block;
+    }
+
+    // for the 'more' ion-card only
+    .ion-card-more {
+        width: 200px !important;
+        height: 200px !important;
+        display: inline-block;
+        background: #ff6f57 !important;
     }
 
     // for all scroll content in the page
