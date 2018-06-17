@@ -10,6 +10,22 @@
 <!-- body segment of the page -->
 <ion-content no-padding no-bounce id="main">
   <ion-grid>
+
+    <!-- Upload profile picture by camera or from photo gallery -->
+    <ion-row id="profile-form" style="padding-top: 10px; padding-bottom: 15px;">
+      <h3 ion-text text-uppercase color="primary" style="padding-left: 5px;">Profile Picture :</h3>
+      <ion-row item-end>
+        <ion-col col-6>
+          <img [src]="profilePictureUrl" class="profile-picture" />
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button block strong color="blue" class="btn-openCamera" (click)="openCamera()">Open Camera</button>
+          <button ion-button block strong color="green" class="btn-openGallery" (click)="openGallery()">Open Gallery</button>
+          <button ion-button block strong class="btn-deletePhoto" *ngIf="profilePictureNew" (click)="deletePhoto()">Delete</button>
+        </ion-col>
+      </ion-row>
+    </ion-row>
+
     <ion-row justify-content-center id="profile-form">
       <ion-col>
 

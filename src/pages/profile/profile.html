@@ -18,7 +18,7 @@
     <ion-row>
       <ion-col col-12 ion-fixed>
         <img class="profile_cover" src="../../assets/imgs/profile_bg.png" />
-        <img class="profile_picture" src="../../assets/imgs/profile_user_1.png">
+        <img class="profile_picture" src="{{ (profileData | async)?.profilepicture }}">
       </ion-col>
     </ion-row>
 
