@@ -6,6 +6,8 @@ import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import { Needs } from '../../models/needs';
 
 import { NeedsCreatePage } from "../needs-create/needs-create";
+import { NeedsEmergencyPage } from '../needs-emergency/needs-emergency';
+import { NeedsSinglePage } from '../needs-single/needs-single';
 
 @IonicPage()
 @Component({
@@ -73,5 +75,15 @@ export class NeedsPage {
   // push needs create page on the top of this page
   push__needs_create_page() {
     this.navCtrl.push(NeedsCreatePage);
+  }
+
+  // push needs emergency page on the top of this page
+  push__needs_emergency_page() {
+    this.navCtrl.push(NeedsEmergencyPage);
+  }
+
+  // push needs single page on the top of this page
+  push__needs_single_page(need: Needs) {
+    this.navCtrl.push(NeedsSinglePage, { needId: need.needid });
   }
 }

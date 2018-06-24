@@ -1,5 +1,6 @@
 // interface for Needs
 export interface Needs {
+    needid: string;
     userid: string;
     bloodgroup: string;
     district: string;
@@ -8,4 +9,5 @@ export interface Needs {
     needbefore: Date;
     desc: string;
     currentstatus: string;
+    enrolleddonors: {};
 }

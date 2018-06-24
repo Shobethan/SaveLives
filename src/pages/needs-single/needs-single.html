@@ -1,0 +1,64 @@
+<!-- header segment of the page -->
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+
+<!-- body segment of the page -->
+<ion-content no-padding id='main'>
+  <ion-grid no-padding>
+
+    <!-- Blood group detail of the need thread -->
+    <ion-list no-border style="margin-top: 30px;">
+      <ion-item>
+        <ion-icon name='md-water' item-start color="primary"></ion-icon>
+        <h2 ion-text color="dark">Blood Group :</h2>
+        <p>{{ (needData | async)?.bloodgroup }}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name='md-albums' item-start color="blue"></ion-icon>
+        <h2 ion-text color="dark">Description :</h2>
+        <p style="white-space: normal !important;" text-justify>{{ (needData | async)?.desc }}</p>
+      </ion-item>
+    </ion-list>
+
+    <ion-list no-border>
+      <ion-item>
+        <ion-icon name='md-calendar' item-start color="green"></ion-icon>
+        <h2 ion-text color="dark">Need Before :</h2>
+        <p>{{ (needData | async)?.needbefore }}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name='md-map' item-start color="blue"></ion-icon>
+        <h2 ion-text color="dark">District :</h2>
+        <p>{{ (needData | async)?.district }}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name='ios-navigate' item-start color="blue"></ion-icon>
+        <h2 ion-text color="dark">City :</h2>
+        <p>{{ (needData | async)?.city }}</p>
+      </ion-item>
+    </ion-list>
+
+    <ion-list no-border>
+      <ion-item>
+        <ion-icon name='md-contact' item-start color="brown"></ion-icon>
+        <h2 ion-text color="dark">Requested By :</h2>
+        <p>{{ userFirstName }}</p>
+      </ion-item>
+    </ion-list>
+
+    <ion-row justify-content-center>
+      <ion-col col-10 text-center>
+        <p *ngIf="!hasEnrolled">
+          Do you think you can help by donate your blood?
+        </p>
+        <button ion-button block strong text-uppercase class="btn-enroll" *ngIf="!hasEnrolled" (click)="enroll_alert()">Enroll Now</button>
+        <p *ngIf="hasEnrolled">
+          You have already enrolled to this thread. Thank you!
+        </p>
+        <button ion-button block strong text-uppercase color="brown" class="btn-unenroll" *ngIf="hasEnrolled" (click)="unenroll_alert()">Unenroll</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

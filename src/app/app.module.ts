@@ -16,8 +16,10 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { TabsPage } from '../pages/tabs/tabs';
 import { NeedsPage } from '../pages/needs/needs';
-import { EventsPage } from '../pages/events/events';
 import { NeedsCreatePage } from '../pages/needs-create/needs-create';
+import { NeedsEmergencyPage } from '../pages/needs-emergency/needs-emergency';
+import { NeedsSinglePage } from '../pages/needs-single/needs-single';
+import { EventsPage } from '../pages/events/events';
 import { ProfilePage } from '../pages/profile/profile';
 import { ProfileFirstPage } from '../pages/profile-first/profile-first';
 import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
@@ -36,6 +38,8 @@ import { Camera } from '@ionic-native/camera';
     RegisterPage,
     NeedsPage,
     NeedsCreatePage,
+    NeedsEmergencyPage,
+    NeedsSinglePage,
     EventsPage,
     ProfilePage,
     ProfileFirstPage,
@@ -58,6 +62,8 @@ import { Camera } from '@ionic-native/camera';
     RegisterPage,
     NeedsPage,
     NeedsCreatePage,
+    NeedsEmergencyPage,
+    NeedsSinglePage,
     EventsPage,
     ProfilePage,
     ProfileFirstPage,

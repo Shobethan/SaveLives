@@ -18,7 +18,7 @@
     <h3 ion-text text-uppercase color="card-header" style="margin-top: 30px; margin-bottom:0px; padding-left: 12px;">Emergency Needs</h3>
     <ion-scroll scrollX="true" style="white-space: nowrap;">
       <ion-list>
-        <ion-card class="ion-card-needs deco" *ngFor="let needEmg of needEmergencyData | async">
+        <ion-card class="ion-card-needs deco" *ngFor="let needEmg of needEmergencyData | async" (click)="push__needs_single_page(needEmg)">
           <ion-card-content>
             <ion-row no-padding no-margin>
               <ion-col no-padding no-margin>
@@ -37,9 +37,10 @@
             </p>
           </ion-card-content>
         </ion-card>
-        <!-- <ion-card class="ion-card-more">
-          <ion-card-content style="height: 100%;">
-            <ion-row no-padding no-margin align-items-center style="height: 100%;">
+        
+        <ion-card class="ion-card-more">
+          <ion-card-content style="height: 100% !important;" (click)="push__needs_emergency_page()">
+            <ion-row no-padding no-margin align-items-center style="height: 100% !important;">
               <ion-col no-padding no-margin text-center>
                 <h1>
                   <ion-icon name="md-arrow-round-forward" color="white"></ion-icon>
@@ -49,7 +50,7 @@
               </ion-col>
             </ion-row>
           </ion-card-content>
-        </ion-card> -->
+        </ion-card>
       </ion-list>
     </ion-scroll>
 
@@ -57,7 +58,7 @@
     <h3 ion-text text-uppercase color="card-header" style="margin-top: 30px; margin-bottom:0px; padding-left: 12px;">Nearby Needs</h3>
     <ion-scroll scrollX="true" style="white-space: nowrap;">
       <ion-list>
-        <ion-card class="ion-card-needs deco" *ngFor="let needNrby of needNearbyData | async">
+        <ion-card class="ion-card-needs deco" *ngFor="let needNrby of needNearbyData | async" (click)="push__needs_single_page(needNrby)">
           <ion-card-content>
             <ion-row no-padding no-margin>
               <ion-col no-padding no-margin>

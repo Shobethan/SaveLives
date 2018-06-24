@@ -1,0 +1,37 @@
+<!-- header segment of the page -->
+<ion-header>
+  <ion-navbar>
+    <ion-title text-uppercase>Emergency Needs</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<!-- body segment of the page -->
+<ion-content no-padding id="main">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="md-arrow-round-down" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..." color="primary">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-grid no-padding>
+    <ion-list>
+      <ion-card class="deco" *ngFor="let needEmg of needEmergencyData | async" (click)="push__needs_single_page(needEmg)">
+        <ion-card-content>
+          <ion-row no-padding no-margin>
+            <ion-col no-padding no-margin>
+              <h1 style="font-size: 60px;" ion-text text-uppercase color="primary">{{needEmg.bloodgroup}}</h1>
+              <br>
+            </ion-col>
+            <ion-col no-padding no-margin>
+              <p ion-text text-right padding-top color="gray-aaa">2 donors enrolled</p>
+            </ion-col>
+          </ion-row>
+          <h2 ion-text text-uppercase color="dark">{{needEmg.district}}</h2>
+          <br>
+          <p ion-text color="gray-aaa">On or Before</p>
+          <p ion-text padding-bottom color="dark">
+            <b>{{needEmg.needbefore}}</b>
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </ion-grid>
+</ion-content>

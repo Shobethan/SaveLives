@@ -17,6 +17,7 @@ export class NeedsCreatePage {
   needRef$: AngularFireList<Needs>;
   city = "";
   desc = "";
+  needid = "";
 
   today = new Date().toISOString();
 
@@ -55,6 +56,7 @@ export class NeedsCreatePage {
     // since these fields are not required if they empty assign null value to them
     this.need.city = this.need.city || this.city;
     this.need.desc = this.need.desc || this.desc;
+    this.need.needid = this.needid;
 
     // get current user uid and assign it to need's userid
     this.need.userid = this.afAuth.auth.currentUser.uid;
@@ -70,9 +72,11 @@ export class NeedsCreatePage {
 
       // try creating new need array
       this.needRef$ = this.afDatabase.list('Needs');
-      await this.needRef$.push(this.need)
-      .then(() => loader.dismiss())
-      .then(() => this.navCtrl.pop());
+      var key = await this.needRef$.push(this.need).key;
+      this.need.needid = key;
+      await this.afDatabase.list(`Needs`).update(key, { needid: key })
+        .then(() => loader.dismiss())
+        .then(() => this.navCtrl.pop());
 
       // show toast message of successful creation of need
       let toast = this.toastCtrl.create({

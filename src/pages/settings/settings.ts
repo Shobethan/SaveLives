@@ -1,6 +1,6 @@
 // imports necessary packages for the settings page
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App, Nav } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { AngularFireAuth} from 'angularfire2/auth';
 import { WelcomePage } from '../welcome/welcome';
 
