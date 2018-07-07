@@ -12,21 +12,21 @@ import { WelcomePage } from '../pages/welcome/welcome';
 })
 
 export class MyApp {
-  rootPage:any = WelcomePage;
+  rootPage: any = WelcomePage;
 
   // showSplash = true;
   showSplash = false;
 
   constructor(
-    platform: Platform, 
-    statusBar: StatusBar, 
+    platform: Platform,
+    statusBar: StatusBar,
     splashScreen: SplashScreen) {
-      platform.ready().then(() => {
-        statusBar.styleDefault();
-        splashScreen.hide();
+    platform.ready().then(() => {
+      statusBar.styleDefault();
+      splashScreen.hide();
 
-        timer(3000).subscribe(() => this.showSplash = false)
-      }
-    );
+      timer(3000).subscribe(() => this.showSplash = false)
+    });
   }
+
 }

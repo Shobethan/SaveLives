@@ -1,10 +1,12 @@
 // imports necessary packages for the needs single page
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController, Alert } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
 import { database } from 'firebase';
 import { Needs } from '../../models/needs';
+import { Profile } from '../../models/profile';
+import { ProfileDonorPage } from '../profile-donor/profile-donor';
 
 @IonicPage()
 @Component({
@@ -17,9 +19,22 @@ export class NeedsSinglePage {
   needRef$: AngularFireObject<Needs>;
   needData: any;
 
-  enrollRef$: AngularFireObject<string>;
+  enrollRef$: AngularFireObject<String>;
 
-  hasEnrolled = false;
+  enrolledRef$: AngularFireList<String>;
+  enrolledData: any;
+
+  profileRef$: AngularFireObject<Profile>;
+
+  ownerName: String;
+  ownerId: String;
+
+  enrolledUsers = [];
+
+  isOwner: Boolean = false;
+  hasEnrolled: Boolean = false;
+  isEligible: Boolean = false;
+  hasEnrolledDonors: Boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -39,6 +54,8 @@ export class NeedsSinglePage {
       content: "Please wait..."
     });
     loader.present();
+
+    this.enrolledUsers = [];
 
     try {
 
@@ -61,6 +78,46 @@ export class NeedsSinglePage {
           return hasEnrolled;
         });
       check.then(hasEnrolled => this.hasEnrolled = hasEnrolled);
+
+      // Find whether the current user's blood group and requested blood group are same or not
+      var currentUserBloodGroup;
+      var currentNeedBloodGroup;
+      var currentUser = await this.afDatabase.object<Profile>(`Profile/${userId}`);
+      currentUser.valueChanges().subscribe(userData => {
+        currentUserBloodGroup = userData.bloodgroup;
+        this.afDatabase.object<Needs>(`Needs/${needId}`).valueChanges().subscribe(needData => {
+          currentNeedBloodGroup = needData.bloodgroup;
+          if (currentUserBloodGroup == currentNeedBloodGroup) {
+            this.isEligible = true;
+          }
+        });
+      });
+
+      // Find the ownerId and ownerName of the need
+      await this.needRef$.valueChanges().subscribe(needDetails => {
+        this.ownerId = needDetails.userid;
+        this.afDatabase.object<Profile>(`Profile/${this.ownerId}`).valueChanges().subscribe(profile => this.ownerName = profile.firstname);
+        // Find whether the owner and current user are the same or not
+        if (userId == this.ownerId) {
+          this.isOwner = true;
+        };
+      });
+
+      // Get details of enrolled users
+      this.enrolledRef$ = this.afDatabase.list<string>(`Needs/${needId}/enrolleddonors`);
+      await this.enrolledRef$.valueChanges().subscribe(data => {
+        this.enrolledData = data;
+        for (let donor of this.enrolledData) {
+          var profileUrl;
+          this.afDatabase.object<Profile>(`Profile/${donor}`).valueChanges().subscribe(profile => {
+            profileUrl = profile.profilepicture;
+            this.enrolledUsers.push({ "userId": donor, "profileUrl": profileUrl });
+          });
+          if (this.enrolledUsers != []) {
+            this.hasEnrolledDonors = true;
+          }         
+        };
+      });
     }
 
     // catch and show errors via toast message only if any errors occur
@@ -183,5 +240,9 @@ export class NeedsSinglePage {
       cssClass: "success_toast"
     });
     toast.present();
+  }
+
+  push__profile_donor_page(userId: String) {
+    this.navCtrl.push(ProfileDonorPage, { userId: userId });
   }
 }

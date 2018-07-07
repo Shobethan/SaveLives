@@ -44,21 +44,36 @@
       <ion-item>
         <ion-icon name='md-contact' item-start color="brown"></ion-icon>
         <h2 ion-text color="dark">Requested By :</h2>
-        <p>{{ userFirstName }}</p>
+        <p>{{ ownerName }}</p>
       </ion-item>
     </ion-list>
 
-    <ion-row justify-content-center>
+    <ion-row justify-content-center *ngIf="!isOwner">
       <ion-col col-10 text-center>
-        <p *ngIf="!hasEnrolled">
-          Do you think you can help by donate your blood?
+        <p *ngIf="!isEligible">
+          You don't have the same blood group to enroll.
         </p>
-        <button ion-button block strong text-uppercase class="btn-enroll" *ngIf="!hasEnrolled" (click)="enroll_alert()">Enroll Now</button>
-        <p *ngIf="hasEnrolled">
+        <button ion-button block strong text-uppercase class="btn-enroll" *ngIf="!isEligible" disabled>Enroll Now</button>
+        <p *ngIf="!hasEnrolled && isEligible">
+          You have the same blood group. Enroll to help!
+        </p>
+        <button ion-button block strong text-uppercase class="btn-enroll" *ngIf="!hasEnrolled && isEligible" (click)="enroll_alert()">Enroll Now</button>
+        <p *ngIf="hasEnrolled && isEligible">
           You have already enrolled to this thread. Thank you!
         </p>
-        <button ion-button block strong text-uppercase color="brown" class="btn-unenroll" *ngIf="hasEnrolled" (click)="unenroll_alert()">Unenroll</button>
+        <button ion-button block strong text-uppercase color="brown" class="btn-unenroll" *ngIf="hasEnrolled && isEligible" (click)="unenroll_alert()">Unenroll</button>
       </ion-col>
     </ion-row>
+
+    <h3 ion-text text-uppercase color="card-header" style="margin-top: 0px; margin-bottom:10px; padding-left: 12px;" *ngIf="isOwner && hasEnrolledDonors">Enrolled Donors</h3>
+    <ion-scroll scrollX="true" style="white-space: nowrap;" *ngIf="isOwner && hasEnrolledDonors">
+      <ion-list>
+        <!-- <ion-item> -->
+        <div *ngFor="let donor of enrolledUsers" style="display: inline-block; padding-left: 12px;">
+          <img class="profile_picture" src="{{donor.profileUrl}}" (click)="push__profile_donor_page(donor.userId)">
+        </div>
+        <!-- </ion-item> -->
+      </ion-list>
+    </ion-scroll>
   </ion-grid>
 </ion-content>

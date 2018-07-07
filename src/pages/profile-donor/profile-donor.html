@@ -1,0 +1,66 @@
+<!-- header segment of the page -->
+<ion-header>
+    <ion-navbar>
+      <ion-title>PROFILE</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <!-- body segment of the page -->
+  <ion-content no-padding id='main'>
+    <ion-grid no-padding>
+  
+      <!-- profile cover image and the profile picture -->
+      <ion-row>
+        <ion-col col-12 ion-fixed>
+          <img class="profile_cover" src="../../assets/imgs/profile_bg.png" />
+          <img class="profile_picture" src="{{ (profileData | async)?.profilepicture }}">
+        </ion-col>
+      </ion-row>
+  
+      <!-- First name and the last name of the user -->
+      <ion-row style="margin-top: 30px;">
+        <ion-col col-12 justify-content-center>
+          <h2 ion-text color="primary" text-center>{{ (profileData | async)?.firstname }} {{ (profileData | async)?.lastname }}</h2>
+        </ion-col>
+      </ion-row>
+  
+      <!-- Small bio of the user -->
+      <ion-list style="margin-top: 20px;" no-border>
+        <ion-item>
+          <ion-icon name='md-contact' item-start color="green"></ion-icon>
+          <h2 ion-text color="dark">Bio :</h2>
+          <p style="white-space: normal !important;" text-justify>{{ (profileData | async)?.bio }}</p>
+        </ion-item>
+      </ion-list>
+  
+      <!-- Email, Phone and District details of the user -->
+      <ion-list no-border>
+  
+        <ion-item>
+          <ion-icon name='md-call' item-start color="blue"></ion-icon>
+          <h2 ion-text color="dark">Phone :</h2>
+          <p>{{ (profileData | async)?.phone }}</p>
+        </ion-item>
+  
+        <ion-item>
+          <ion-icon name='ios-navigate' item-start color="blue"></ion-icon>
+          <h2 ion-text color="dark">District :</h2>
+          <p>{{ (profileData | async)?.district }}</p>
+        </ion-item>
+      </ion-list>
+  
+      <!-- Gender and Blood group details of the user -->
+      <ion-list no-border>
+        <ion-item>
+          <ion-icon name='md-male' item-start color="primary"></ion-icon>
+          <h2 ion-text color="dark">Gender :</h2>
+          <p>{{ (profileData | async)?.gender }}</p>
+        </ion-item>
+        <ion-item>
+          <ion-icon name='md-water' item-start color="primary"></ion-icon>
+          <h2 ion-text color="dark">Blood Group :</h2>
+          <p>{{ (profileData | async)?.bloodgroup }}</p>
+        </ion-item>
+      </ion-list>
+    </ion-grid>
+  </ion-content>

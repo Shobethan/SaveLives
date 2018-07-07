@@ -23,6 +23,7 @@ import { EventsPage } from '../pages/events/events';
 import { ProfilePage } from '../pages/profile/profile';
 import { ProfileFirstPage } from '../pages/profile-first/profile-first';
 import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
+import { ProfileDonorPage } from '../pages/profile-donor/profile-donor'
 import { SettingsPage } from '../pages/settings/settings';
 
 // imports miscellaneous packages for the app
@@ -44,6 +45,7 @@ import { Camera } from '@ionic-native/camera';
     ProfilePage,
     ProfileFirstPage,
     ProfileEditPage,
+    ProfileDonorPage,
     SettingsPage,
     TabsPage
   ],
@@ -68,6 +70,7 @@ import { Camera } from '@ionic-native/camera';
     ProfilePage,
     ProfileFirstPage,
     ProfileEditPage,
+    ProfileDonorPage,
     SettingsPage,
     TabsPage
   ],

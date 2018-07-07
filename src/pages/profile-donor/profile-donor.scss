@@ -1,0 +1,29 @@
+page-profile-donor {
+
+    // for the whole profile page
+    #main {
+      background: color($colors, bgcolor);
+    }
+
+    // for the cover image of the profile
+    .profile_cover {
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+  
+    // for the profile picture of the profile
+    .profile_picture {
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 180px;
+      border-radius: 50%;
+      border-style: solid;
+      border-width: medium;
+      border-color: #ffffff;
+      filter: drop-shadow(0px 5px 10px #ffa393) !important;
+    }
+}
+  
