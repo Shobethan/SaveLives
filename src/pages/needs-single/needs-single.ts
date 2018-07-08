@@ -36,6 +36,8 @@ export class NeedsSinglePage {
   isEligible: Boolean = false;
   hasEnrolledDonors: Boolean = false;
 
+  subscriptions = [];
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -65,7 +67,6 @@ export class NeedsSinglePage {
       // try to get need details from firebase database
       this.needRef$ = await this.afDatabase.object<Needs>(`Needs/${needId}`);
       this.needData = await this.needRef$.valueChanges();
-      loader.dismiss();
 
       // Get the current userId
       var userId = this.afAuth.auth.currentUser.uid;
@@ -83,47 +84,53 @@ export class NeedsSinglePage {
       var currentUserBloodGroup;
       var currentNeedBloodGroup;
       var currentUser = await this.afDatabase.object<Profile>(`Profile/${userId}`);
-      currentUser.valueChanges().subscribe(userData => {
+      let sub1 = currentUser.valueChanges().subscribe(userData => {
         currentUserBloodGroup = userData.bloodgroup;
-        this.afDatabase.object<Needs>(`Needs/${needId}`).valueChanges().subscribe(needData => {
+        let sub2 = this.afDatabase.object<Needs>(`Needs/${needId}`).valueChanges().subscribe(needData => {
           currentNeedBloodGroup = needData.bloodgroup;
           if (currentUserBloodGroup == currentNeedBloodGroup) {
             this.isEligible = true;
-          }
+          };
+          this.subscriptions.push(sub2);
         });
       });
+      this.subscriptions.push(sub1);
 
       // Find the ownerId and ownerName of the need
-      await this.needRef$.valueChanges().subscribe(needDetails => {
+      let sub3 = await this.needRef$.valueChanges().subscribe(needDetails => {
         this.ownerId = needDetails.userid;
-        this.afDatabase.object<Profile>(`Profile/${this.ownerId}`).valueChanges().subscribe(profile => this.ownerName = profile.firstname);
+        let sub4 = this.afDatabase.object<Profile>(`Profile/${this.ownerId}`).valueChanges().subscribe(profile => this.ownerName = profile.firstname);
+        this.subscriptions.push(sub4);
         // Find whether the owner and current user are the same or not
         if (userId == this.ownerId) {
           this.isOwner = true;
         };
       });
+      this.subscriptions.push(sub3);
 
       // Get details of enrolled users
       this.enrolledRef$ = this.afDatabase.list<string>(`Needs/${needId}/enrolleddonors`);
-      await this.enrolledRef$.valueChanges().subscribe(data => {
+      let sub5 = await this.enrolledRef$.valueChanges().subscribe(data => {
         this.enrolledData = data;
         for (let donor of this.enrolledData) {
           var profileUrl;
-          this.afDatabase.object<Profile>(`Profile/${donor}`).valueChanges().subscribe(profile => {
+          let sub6 = this.afDatabase.object<Profile>(`Profile/${donor}`).valueChanges().subscribe(profile => {
             profileUrl = profile.profilepicture;
             this.enrolledUsers.push({ "userId": donor, "profileUrl": profileUrl });
           });
+          this.subscriptions.push(sub6);
           if (this.enrolledUsers != []) {
             this.hasEnrolledDonors = true;
-          }         
+          };        
         };
       });
+      this.subscriptions.push(sub5);      
+      loader.dismiss(); 
     }
 
     // catch and show errors via toast message only if any errors occur
     catch (e) {
-      loader.dismiss();
-
+      loader.dismiss(); 
       let toast = this.toastCtrl.create({
         message: e,
         duration: 5000,
@@ -244,5 +251,12 @@ export class NeedsSinglePage {
 
   push__profile_donor_page(userId: String) {
     this.navCtrl.push(ProfileDonorPage, { userId: userId });
+  }  
+
+  ionViewDidLeave() {
+    for (let sub of this.subscriptions) {
+      console.log(sub);
+      sub.unsubscribe();
+    }
   }
 }

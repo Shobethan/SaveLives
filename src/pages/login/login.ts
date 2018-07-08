@@ -47,7 +47,7 @@ export class LoginPage {
     loader.present();
 
     try {
-      
+
       // try login with email and password
       await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
       loader.dismiss();

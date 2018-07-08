@@ -19,12 +19,15 @@ import { NeedsPage } from '../pages/needs/needs';
 import { NeedsCreatePage } from '../pages/needs-create/needs-create';
 import { NeedsEmergencyPage } from '../pages/needs-emergency/needs-emergency';
 import { NeedsSinglePage } from '../pages/needs-single/needs-single';
+import { NeedsEnrolledPage } from '../pages/needs-enrolled/needs-enrolled';
+import { NeedsCreatedPage } from '../pages/needs-created/needs-created';
 import { EventsPage } from '../pages/events/events';
 import { ProfilePage } from '../pages/profile/profile';
 import { ProfileFirstPage } from '../pages/profile-first/profile-first';
 import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
 import { ProfileDonorPage } from '../pages/profile-donor/profile-donor'
 import { SettingsPage } from '../pages/settings/settings';
+import { NotificationsPage } from '../pages/notifications/notifications';
 
 // imports miscellaneous packages for the app
 import { StatusBar } from '@ionic-native/status-bar';
@@ -41,12 +44,15 @@ import { Camera } from '@ionic-native/camera';
     NeedsCreatePage,
     NeedsEmergencyPage,
     NeedsSinglePage,
+    NeedsEnrolledPage,
+    NeedsCreatedPage,
     EventsPage,
     ProfilePage,
     ProfileFirstPage,
     ProfileEditPage,
     ProfileDonorPage,
     SettingsPage,
+    NotificationsPage,
     TabsPage
   ],
   imports: [
@@ -66,12 +72,15 @@ import { Camera } from '@ionic-native/camera';
     NeedsCreatePage,
     NeedsEmergencyPage,
     NeedsSinglePage,
+    NeedsEnrolledPage,
+    NeedsCreatedPage,
     EventsPage,
     ProfilePage,
     ProfileFirstPage,
     ProfileEditPage,
     ProfileDonorPage,
     SettingsPage,
+    NotificationsPage,
     TabsPage
   ],
   providers: [

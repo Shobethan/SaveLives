@@ -13,26 +13,29 @@
     <h3 ion-text text-uppercase color="card-header" style="margin-top: 30px; padding-left: 10px;">Personal</h3>
     <ion-list no-border style="margin-bottom: 12px">
 
-      <!-- Enrolled needs -->
-      <ion-item>
+      <!-- Enrolled needs : for donors -->
+      <button ion-item *ngIf="isDonor" (click)="push__needs_enrolled_page()">
         <ion-icon name='md-heart' item-start color="primary"></ion-icon>
         Enrolled Needs
-        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
-      </ion-item>
+      </button>
+
+      <!-- Enrolled needs : for blood bank representatives -->
+      <button ion-item *ngIf="isBBR" (click)="push__needs_created_page()">
+        <ion-icon name='md-heart' item-start color="primary"></ion-icon>
+        Requested Needs
+      </button>
 
       <!-- Privacy settings -->
-      <ion-item>
+      <button ion-item>
         <ion-icon name='md-finger-print' item-start color="blue"></ion-icon>
         Privacy Settings
-        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
-      </ion-item>
+      </button>
 
       <!-- Location settings -->
-      <ion-item>
+      <button ion-item>
         <ion-icon name='md-locate' item-start color="blue"></ion-icon>
         Location
-        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
-      </ion-item>
+      </button>
     </ion-list>
 
     <!-- Application settings -->
@@ -40,18 +43,16 @@
     <ion-list no-border style="margin-bottom: 12px">
 
       <!-- App notification settings -->
-      <ion-item>
+      <button ion-item>
         <ion-icon name='ios-notifications' item-start color="green"></ion-icon>
         Notification
-        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
-      </ion-item>
+      </button>
 
       <!-- Help & support details -->
-      <ion-item>
+      <button ion-item>
         <ion-icon name='md-help-buoy' item-start color="primary"></ion-icon>
         Help & Support
-        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
-      </ion-item>
+      </button>
     </ion-list>
 
     <!-- General settings -->
@@ -59,38 +60,34 @@
     <ion-list no-border style="margin-bottom: 12px">
 
       <!-- Privacy policy details -->
-      <ion-item>
+      <button ion-item>
         <ion-icon name='md-lock' item-start color="blue"></ion-icon>
         Privacy Policy
-        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
-      </ion-item>
+      </button>
 
       <!-- Terms & condition details -->
-      <ion-item>
+      <button ion-item>
         <ion-icon name='md-hand' item-start color="green"></ion-icon>
         Terms & Conditions
-        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
-      </ion-item>
+      </button>
 
       <!-- Report any bug related to the app -->
-      <ion-item>
+      <button ion-item>
         <ion-icon name='ios-bug' item-start color="brown"></ion-icon>
         Report Bug
-        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
-      </ion-item>
+      </button>
 
       <!-- Contact us -->
-      <ion-item>
+      <button ion-item>
         <ion-icon name='md-contacts' item-start color="purple"></ion-icon>
         Contact Us
-        <ion-icon name='ios-arrow-forward' item-end color="gray-aaa"></ion-icon>
-      </ion-item>
+      </button>
 
       <!-- Log out -->
-      <ion-item (click)="logout()">
+      <button ion-item (click)="logout()">
         <ion-icon name='md-log-out' item-start color="primary"></ion-icon>
         Log out
-      </ion-item>
+      </button>
     </ion-list>
 
     <!-- Current version of the app -->
