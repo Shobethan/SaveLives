@@ -7,11 +7,24 @@ page-needs {
 
     // for the every needs card
     .deco {
-    background-image: url("../../assets/imgs/need_bottom_icon_deco.png"), url("../../assets/imgs/need_bottom_deco.png") !important;
-    background-position: right 33px bottom 33px, right bottom !important;
-    background-size: 25px, 140px !important;
-    background-repeat: no-repeat, no-repeat !important;
-    height: 200px !important;
+        background-image: url("../../assets/imgs/need_bottom_icon_deco.png"), url("../../assets/imgs/need_bottom_deco.png") !important;
+        background-position: right 33px bottom 33px, right bottom !important;
+        background-size: 25px, 140px !important;
+        background-repeat: no-repeat, no-repeat !important;
+        height: 200px !important;
+    }
+
+    // For notification button
+    #notification-badge {
+        position: relative;
+    }
+
+    // For notification badge
+    #notification-badge {
+        position: absolute;
+        top: 0px;
+        right: -16px;
+        background: #ff9a8a;
     }
 
     // for make all cards inside scroll, vertical

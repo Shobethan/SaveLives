@@ -25,5 +25,19 @@ page-profile {
       border-color: #ffffff;
       filter: drop-shadow(0px 5px 10px #ffa393) !important;
     }
+    
+    // For notification button
+    #notification-badge {
+      position: relative;
+    }
+
+    // For notification badge
+    #notification-badge {
+      position: absolute;
+      top: 0px;
+      right: -16px;
+      background: #ff9a8a;
+  }
+
 }
   

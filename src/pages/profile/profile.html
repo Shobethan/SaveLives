@@ -1,6 +1,12 @@
 <!-- header segment of the page -->
 <ion-header>
   <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only id="notification-button" (click)="push__notifications_page()" style="margin-left: 10px;">
+        <ion-icon name="md-notifications"></ion-icon>
+        <ion-badge id="notification-badge">{{ notificationsCount }}</ion-badge>
+      </button>
+    </ion-buttons>
     <ion-title>PROFILE</ion-title>
     <ion-buttons end>
       <button ion-button (click)="push__profile_edit_page()">

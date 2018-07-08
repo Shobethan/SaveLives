@@ -1,3 +1,12 @@
 page-notifications {
 
+    // for the whole needs page
+    #main {
+        background: color($colors, bgcolor);
+    }
+
+    // For read messages
+    .read {
+        background: color($colors, bgcolor);
+    }
 }

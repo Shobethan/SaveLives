@@ -6,6 +6,9 @@ import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Profile } from '../../models/profile';
 
 import { ProfileEditPage } from '../profile-edit/profile-edit';
+import { NotificationsPage } from '../notifications/notifications';
+
+import { Notifications } from '../../models/notifications';
 
 @IonicPage()
 @Component({
@@ -21,6 +24,8 @@ export class ProfilePage {
 
   userEmail: string;
 
+  notificationsCount: number;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -30,7 +35,7 @@ export class ProfilePage {
     private toastCtrl: ToastController) {
   }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
 
     // show the loader
     var loader = this.loadCtrl.create({
@@ -45,9 +50,11 @@ export class ProfilePage {
       var userId = this.afAuth.auth.currentUser.uid;
       this.profileRef$ = this.afDatabase.object<Profile>(`Profile/${userId}`);
       this.profileData = this.profileRef$.valueChanges();
-      loader.dismiss();
 
       this.userEmail = this.afAuth.auth.currentUser.email;
+
+      await this.afDatabase.list<Notifications[]>(`Notifications/${userId}`, ref => ref.orderByChild('isRead').equalTo(false)).valueChanges().subscribe(data => this.notificationsCount = data.length);
+      loader.dismiss();
     }
 
     // catch and show errors via toast message only if any errors occur
@@ -62,6 +69,11 @@ export class ProfilePage {
       });
       toast.present();
     }
+  }
+
+  // push notifications page on the top of this page
+  push__notifications_page() {
+    this.navCtrl.push(NotificationsPage);
   }
 
   // push profile edit page on the top of this page

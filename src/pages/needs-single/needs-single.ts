@@ -7,6 +7,7 @@ import { database } from 'firebase';
 import { Needs } from '../../models/needs';
 import { Profile } from '../../models/profile';
 import { ProfileDonorPage } from '../profile-donor/profile-donor';
+import { Notifications } from '../../models/notifications';
 
 @IonicPage()
 @Component({
@@ -26,8 +27,14 @@ export class NeedsSinglePage {
 
   profileRef$: AngularFireObject<Profile>;
 
+  enrollNotification: Notifications;
+  unenrollNotification: Notifications;
+
   ownerName: String;
   ownerId: String;
+
+  currentUserName: String;
+  currentUserProfilePictureUrl: String;
 
   enrolledUsers = [];
 
@@ -108,6 +115,13 @@ export class NeedsSinglePage {
       });
       this.subscriptions.push(sub3);
 
+      // Find the currentUserName and profile Picture Url
+      let sub6 = this.afDatabase.object<Profile>(`Profile/${userId}`).valueChanges().subscribe(profile => {
+        this.currentUserName = profile.firstname;
+        this.currentUserProfilePictureUrl = profile.profilepicture;
+      });
+      this.subscriptions.push(sub6);
+
       // Get details of enrolled users
       this.enrolledRef$ = this.afDatabase.list<string>(`Needs/${needId}/enrolleddonors`);
       let sub5 = await this.enrolledRef$.valueChanges().subscribe(data => {
@@ -121,16 +135,16 @@ export class NeedsSinglePage {
           this.subscriptions.push(sub6);
           if (this.enrolledUsers != []) {
             this.hasEnrolledDonors = true;
-          };        
+          };
         };
       });
-      this.subscriptions.push(sub5);      
-      loader.dismiss(); 
+      this.subscriptions.push(sub5);
+      loader.dismiss();
     }
 
     // catch and show errors via toast message only if any errors occur
     catch (e) {
-      loader.dismiss(); 
+      loader.dismiss();
       let toast = this.toastCtrl.create({
         message: e,
         duration: 5000,
@@ -182,8 +196,22 @@ export class NeedsSinglePage {
     // Push current userId to enrolled donors list
     this.enrollRef$ = this.afDatabase.object<string>(`Needs/${needId}/enrolleddonors/${userId}`);
     await this.enrollRef$.set(userId)
-      .then(() => this.hasEnrolled = true)
-      .then(() => loader.dismiss());
+      .then(() => {
+        this.hasEnrolled = true;
+
+        // Send notification to owner
+        this.enrollNotification = {
+          'type': 'enrolled',
+          'userId': `${userId}`,
+          'needId': `${needId}`,
+          'heading': 'New Donor Enrolled',
+          'body': `Donor ${this.currentUserName} enrolled to your need request.`,
+          'iconUrl': `${this.currentUserProfilePictureUrl}`,
+          'isRead': false
+        };
+        this.afDatabase.object(`Notifications/${this.ownerId}/${userId}${needId}`).set(this.enrollNotification);
+        loader.dismiss();
+      });
 
     // Show the toast message
     let toast = this.toastCtrl.create({
@@ -236,8 +264,22 @@ export class NeedsSinglePage {
     // Delete current userId from enrolled donors list
     this.enrollRef$ = this.afDatabase.object<string>(`Needs/${needId}/enrolleddonors/${userId}`);
     await this.enrollRef$.remove()
-      .then(() => this.hasEnrolled = false)
-      .then(() => loader.dismiss());
+      .then(() => {
+        this.hasEnrolled = false;
+
+        // Send notification to owner
+        this.unenrollNotification = {
+          'type': 'unenrolled',
+          'userId': `${userId}`,
+          'needId': `${needId}`,
+          'heading': 'Donor Unenrolled',
+          'body': `Donor ${this.currentUserName} unenrolled from your need request.`,
+          'iconUrl': `${this.currentUserProfilePictureUrl}`,
+          'isRead': false
+        };
+        this.afDatabase.object(`Notifications/${this.ownerId}/${userId}${needId}`).set(this.unenrollNotification);
+        loader.dismiss();
+      });
 
     // Show the toast message
     let toast = this.toastCtrl.create({
@@ -251,11 +293,10 @@ export class NeedsSinglePage {
 
   push__profile_donor_page(userId: String) {
     this.navCtrl.push(ProfileDonorPage, { userId: userId });
-  }  
+  }
 
   ionViewDidLeave() {
     for (let sub of this.subscriptions) {
-      console.log(sub);
       sub.unsubscribe();
     }
   }

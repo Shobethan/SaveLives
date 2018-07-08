@@ -8,6 +8,8 @@ import { Needs } from '../../models/needs';
 import { NeedsCreatePage } from "../needs-create/needs-create";
 import { NeedsEmergencyPage } from '../needs-emergency/needs-emergency';
 import { NeedsSinglePage } from '../needs-single/needs-single';
+import { NotificationsPage } from '../notifications/notifications';
+import { Notifications } from '../../models/notifications';
 
 @IonicPage()
 @Component({
@@ -22,6 +24,8 @@ export class NeedsPage {
   needEmergencyData: any;
   needNearbyRef$: AngularFireList<Needs[]>;
   needNearbyData: any;
+
+  notificationsCount: number;
 
   constructor(
     public navCtrl: NavController,
@@ -54,6 +58,8 @@ export class NeedsPage {
         this.needNearbyRef$ = this.afDatabase.list<Needs[]>('Needs', ref => ref.orderByChild("district").equalTo(District).limitToFirst(4));
         this.needNearbyData = this.needNearbyRef$.valueChanges().take(1);
       });
+
+      await this.afDatabase.list<Notifications[]>(`Notifications/${userId}`, ref => ref.orderByChild('isRead').equalTo(false)).valueChanges().subscribe(data => this.notificationsCount = data.length);
       loader.dismiss();
     }
 
@@ -70,6 +76,11 @@ export class NeedsPage {
       });
       toast.present();
     }
+  }
+
+  // push notifications page on the top of this page
+  push__notifications_page() {
+    this.navCtrl.push(NotificationsPage);
   }
 
   // push needs create page on the top of this page

@@ -1,6 +1,12 @@
 <!-- header segment of the page -->
 <ion-header>
   <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only id="notification-button" (click)="push__notifications_page()" style="margin-left: 10px;">
+        <ion-icon name="md-notifications"></ion-icon>
+        <ion-badge id="notification-badge">{{ notificationsCount }}</ion-badge>
+      </button>
+    </ion-buttons>
     <ion-title>NEEDS</ion-title>
     <ion-buttons end>
       <button ion-button (click)="push__needs_create_page()">
@@ -37,7 +43,7 @@
             </p>
           </ion-card-content>
         </ion-card>
-        
+
         <ion-card class="ion-card-more">
           <ion-card-content style="height: 100% !important;" (click)="push__needs_emergency_page()">
             <ion-row no-padding no-margin align-items-center style="height: 100% !important;">

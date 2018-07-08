@@ -1,18 +1,44 @@
-<!--
-  Generated template for the NotificationsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
+<!-- header segment of the page -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>notifications</ion-title>
+    <ion-title>NOTIFICATIONS</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding>
-
+<!-- body segment of the page -->
+<ion-content no-padding id="main">
+  <ion-grid no-padding>
+    <ion-list *ngFor="let notification of notificationsData | async" style="margin-top: 0px; margin-bottom: 0px !important;">
+      <ion-item-sliding>
+        <ion-item *ngIf="notification.isRead" class="read" (click)="push__needs_single_page(notification)">
+          <ion-avatar item-start>
+            <img [src]="notification.iconUrl">
+          </ion-avatar>
+          <h2 style="color: #888;">{{ notification.heading }}</h2>
+          <p>{{ notification.body }}</p>
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button color="primary" (click)="make_the_notification_unread(notification)">
+            <ion-icon name="text"></ion-icon>
+            Unread
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+      <ion-item-sliding>
+          <ion-item *ngIf="!notification.isRead" (click)="push__needs_single_page(notification)">
+            <ion-avatar item-start>
+              <img [src]="notification.iconUrl">
+            </ion-avatar>
+            <h2>{{ notification.heading }}</h2>
+            <p>{{ notification.body }}</p>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="primary" (click)="make_the_notification_read(notification)">
+              <ion-icon name="text"></ion-icon>
+              Read
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+  </ion-grid>
 </ion-content>
