@@ -1,47 +1,55 @@
+<!-- header segment of the page -->
 <ion-header>
-
   <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only id="notification-button" (click)="push__notifications_page()" style="margin-left: 10px;">
+        <ion-icon name="md-notifications"></ion-icon>
+        <ion-badge id="notification-badge">{{ notificationsCount }}</ion-badge>
+      </button>
+    </ion-buttons>
     <ion-title>EVENTS</ion-title>
-	<ion-buttons end>
-      <button ion-button (click)="push__add_event_page()">
+    <ion-buttons end>
+      <button ion-button (click)="push__events_create_page()">
         <p>Create</p>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-
-<ion-content no padding id="main">
-
-  <ion-content class="card-background-page">
-    <ion-grid no-padding>
-    
-      <ion-list>
-      <ion-item *ngFor="let event of eventData | async">
-     
-            <ion-card-content>
-              <ion-row no-padding no-margin>
-                <ion-col no-padding no-margin>
-                  <h1 style="font-size: 25px;" ion-text  color="primary">{{event.Name}}</h1>
-                  <br>
-                </ion-col>
-               <!--  <ion-col no-padding no-margin>
-                  <p ion-text text-right padding-top color="gray-aaa">{{event.Date}}</p>
-                </ion-col> -->
-              </ion-row>
-              <h2 ion-text color="dark">{{event.Place}}</h2>
-              <br>
-              
-              <p ion-text padding-bottom color="dark">
-                <b>{{event.Date}}</b> </p>
-          <p ion-text color="gray-aaa">{{event.Description}}</p>
-             
-            </ion-card-content>
-          <!-- </ion-card> -->
-    <!-- </ion-list> -->
-   </ion-item>
+<!-- body segment of the page -->
+<ion-content no-padding id="main">
+  <ion-grid no-padding>
+    <ion-list>
+      <ion-card class="ion-card-events" *ngFor="let event of eventsData | async">
+        <ion-card-content>
+          <ion-row no-margin>
+            <img [src]="event.imageUrl" style="border-radius: 6px; width: 100%; height: 100%;" />
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <h2 style="font-size: 60px; margin-top: 8px;" ion-text text-center text-uppercase color="primary">{{ event.name }}</h2>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <p ion-text color="gray-aaa" text-justify style="margin-bottom: 12px;">{{ event.desc }}</p>
+              <p text-center color="dark" style="font-size: 16px;">
+                <b>at {{ event.place }}, {{ event.district }}</b>
+              </p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <p><b>DATE:</b></p>
+              <p>{{ event.date }}</p>
+            </ion-col>
+            <ion-col text-right>
+              <p><b>CONTACT:</b></p>
+              <p>{{ event.contact }}</p>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
     </ion-list>
-  
   </ion-grid>
-  
-  </ion-content>
+</ion-content>

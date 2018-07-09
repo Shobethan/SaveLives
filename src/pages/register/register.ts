@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from '../../models/user';
+import firebase from 'firebase';
 
 import { ProfileFirstPage } from '../profile-first/profile-first';
 import { LoginPage } from '../login/login';
@@ -99,6 +100,13 @@ export class RegisterPage {
         this.confirm_password = "";
       }
     }
+  }
+
+  // Register with facebook
+  registerWithFacebook() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+    // this.afAuth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider())
+    .then( result => console.log (result));
   }
 
   // navigate to login page

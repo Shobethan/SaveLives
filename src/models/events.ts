@@ -1,9 +1,13 @@
 // interface for Events
 export interface Events {
-    Name: string;
-    Date: Date;
-    Contact: string;
-    Description: string;
-	Place: string;
-    
+    eventId: string;
+    name: string;
+    district: string;
+    date: Date;
+    contact: string;
+    desc: string;
+    place: string;
+    imageUrl: string;
+    ownerId: string;
+    imageId: string;
 }

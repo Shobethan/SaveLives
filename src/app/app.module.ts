@@ -28,7 +28,7 @@ import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
 import { ProfileDonorPage } from '../pages/profile-donor/profile-donor'
 import { SettingsPage } from '../pages/settings/settings';
 import { NotificationsPage } from '../pages/notifications/notifications';
-import { AddeventPage } from '../pages/addevent/addevent';
+import { EventsCreatePage } from '../pages/events-create/events-create';
 
 // imports miscellaneous packages for the app
 import { StatusBar } from '@ionic-native/status-bar';
@@ -48,14 +48,14 @@ import { Camera } from '@ionic-native/camera';
     NeedsEnrolledPage,
     NeedsCreatedPage,
     EventsPage,
+    EventsCreatePage,
     ProfilePage,
     ProfileFirstPage,
     ProfileEditPage,
     ProfileDonorPage,
     SettingsPage,
     NotificationsPage,
-    TabsPage,
-    AddeventPage
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -77,14 +77,14 @@ import { Camera } from '@ionic-native/camera';
     NeedsEnrolledPage,
     NeedsCreatedPage,
     EventsPage,
+    EventsCreatePage,
     ProfilePage,
     ProfileFirstPage,
     ProfileEditPage,
     ProfileDonorPage,
     SettingsPage,
     NotificationsPage,
-    TabsPage,
-    AddeventPage
+    TabsPage
   ],
   providers: [
     StatusBar,
