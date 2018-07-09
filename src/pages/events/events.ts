@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the EventsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AddeventPage } from '../addevent/addevent';
+import { Events } from '../../models/events';
 
 @IonicPage()
 @Component({
@@ -14,12 +11,45 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'events.html',
 })
 export class EventsPage {
+	event = {} as Events;
+	eventRef$: AngularFireList<Events[]>;
+	eventData: any;
+	
+ constructor(
+	public navCtrl: NavController, 
+	public navParams: NavParams,
+	private afAuth: AngularFireAuth,
+	private afDatabase : AngularFireDatabase,
+	private loadCtrl: LoadingController) {
+  }
+  
+	async ionViewWillEnter() {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    // show the loader
+    var loader = this.loadCtrl.create({
+      spinner: "bubbles",
+      content: "Please wait..."
+    });
+    loader.present();
+	
+	try {
+
+      // try to get profile details from firebase database
+      //var userId = this.afAuth.auth.currentUser.uid;
+      this.eventRef$ = this.afDatabase.list<Events[]>('Events');
+      this.eventData = this.eventRef$.valueChanges();
+	  console.log(this.eventData);
+      loader.dismiss();
+
+      
+    }
+	
+	catch (e) {
+		console.log(e);
+	}
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EventsPage');
-  }
-
+	push__add_event_page() {
+	this.navCtrl.push(AddeventPage);
+	}
 }
