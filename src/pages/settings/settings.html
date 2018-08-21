@@ -25,6 +25,12 @@
         Requested Needs
       </button>
 
+      <!-- Blood bank representatives requests : for admins -->
+      <button ion-item *ngIf="isAdmin" (click)="push__bbr_requests_page()">
+        <ion-icon name='md-contacts' item-start color="brown"></ion-icon>
+        BBR requests
+      </button>
+
       <!-- Privacy settings -->
       <button ion-item>
         <ion-icon name='md-finger-print' item-start color="blue"></ion-icon>
@@ -81,6 +87,12 @@
       <button ion-item>
         <ion-icon name='md-contacts' item-start color="purple"></ion-icon>
         Contact Us
+      </button>      
+
+      <!-- Request to be a Blood bank representative : for donors -->
+      <button ion-item *ngIf="isDonor && !isBBR && !isAdmin" (click)="send_bbr_request()">
+        <ion-icon name='md-contacts' item-start color="brown"></ion-icon>
+        Request to be a BBR
       </button>
 
       <!-- Log out -->

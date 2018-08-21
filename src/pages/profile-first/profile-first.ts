@@ -178,6 +178,7 @@ export class ProfileFirstPage {
     this.profile.lastname = this.profile.lastname || this.lastname;
     this.profile.bio = this.profile.bio || this.bio;
     this.profile.phone = this.profile.phone || this.phone;
+    this.profile.userrole = "donor";
 
     this.profile.profilepicture = this.profilePictureUrl;
 

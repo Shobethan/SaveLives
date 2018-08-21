@@ -11,6 +11,19 @@ page-events {
         font-size: 24px !important;
     }
 
+    // For notification button
+    #notification-badge {
+        position: relative;
+    }
+    
+    // For notification badge
+    #notification-badge {
+        position: absolute;
+        top: 0px;
+        right: -16px;
+        background: #ff9a8a;
+    }
+
     // for all cards in this page for all platform 
     .card-ios, .card-md, .card-wp {
         margin: 12px;

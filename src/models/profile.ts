@@ -9,4 +9,5 @@ export interface Profile {
     phone: string;
     gender: string;
     bloodgroup: string;
+    userrole: string;
 }

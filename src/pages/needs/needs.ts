@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase, AngularFireList} from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject} from 'angularfire2/database';
 import { Needs } from '../../models/needs';
 
 import { NeedsCreatePage } from "../needs-create/needs-create";
@@ -10,6 +10,7 @@ import { NeedsEmergencyPage } from '../needs-emergency/needs-emergency';
 import { NeedsSinglePage } from '../needs-single/needs-single';
 import { NotificationsPage } from '../notifications/notifications';
 import { Notifications } from '../../models/notifications';
+import { Profile } from '../../models/profile';
 
 @IonicPage()
 @Component({
@@ -19,7 +20,11 @@ import { Notifications } from '../../models/notifications';
 
 export class NeedsPage {
 
+  profileRef$: AngularFireObject<Profile>;
   profileData: any;
+  isDonor: Boolean = true;
+  isBBR: Boolean = false;
+  isAdmin: Boolean = false;
   needEmergencyRef$: AngularFireList<Needs[]>;
   needEmergencyData: any;
   needNearbyRef$: AngularFireList<Needs[]>;
@@ -60,6 +65,23 @@ export class NeedsPage {
       });
 
       await this.afDatabase.list<Notifications[]>(`Notifications/${userId}`, ref => ref.orderByChild('isRead').equalTo(false)).valueChanges().subscribe(data => this.notificationsCount = data.length);
+
+      this.profileRef$ = this.afDatabase.object<Profile>(`Profile/${userId}`);
+      this.profileData = this.profileRef$.valueChanges().subscribe(data => {
+        if (data.userrole == "admin") {
+          this.isAdmin = true;
+          this.isBBR = true;
+          this.isDonor = true;
+        } else if (data.userrole == "bbr") {
+          this.isAdmin = false;
+          this.isBBR = true;
+          this.isDonor = true;
+        } else if (data.userrole == "donor") {
+          this.isAdmin = false;
+          this.isBBR = false;
+          this.isDonor = true;
+        }
+      });
       loader.dismiss();
     }
 

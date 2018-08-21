@@ -8,7 +8,7 @@
       </button>
     </ion-buttons>
     <ion-title>EVENTS</ion-title>
-    <ion-buttons end>
+    <ion-buttons end *ngIf="isBBR || isAdmin">
       <button ion-button (click)="push__events_create_page()">
         <p>Create</p>
       </button>
