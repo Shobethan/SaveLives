@@ -1,0 +1,20 @@
+<!-- header segment of the page -->
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+
+<!-- body segment of the page -->
+<ion-content no-padding id='main'>
+  <ion-grid no-padding>
+
+    <ion-list *ngFor="let req of requests" style="margin-top: 0px; margin-bottom: 0px !important;">
+      <ion-item (click)="confirm_the_req(req.userId)">
+        <ion-avatar item-start>
+          <img src="{{req.profileUrl}}">
+        </ion-avatar>
+        <h2 style="color: #888;">{{ req.name }}</h2>
+      </ion-item>
+    </ion-list>
+  </ion-grid>
+</ion-content>

@@ -29,6 +29,7 @@ import { ProfileDonorPage } from '../pages/profile-donor/profile-donor'
 import { SettingsPage } from '../pages/settings/settings';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { EventsCreatePage } from '../pages/events-create/events-create';
+import { BbrRequestsPage } from '../pages/bbr-requests/bbr-requests';
 
 // imports miscellaneous packages for the app
 import { StatusBar } from '@ionic-native/status-bar';
@@ -55,6 +56,7 @@ import { Camera } from '@ionic-native/camera';
     ProfileDonorPage,
     SettingsPage,
     NotificationsPage,
+    BbrRequestsPage,
     TabsPage
   ],
   imports: [
@@ -84,6 +86,7 @@ import { Camera } from '@ionic-native/camera';
     ProfileDonorPage,
     SettingsPage,
     NotificationsPage,
+    BbrRequestsPage,
     TabsPage
   ],
   providers: [
