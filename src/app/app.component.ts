@@ -14,8 +14,8 @@ import { WelcomePage } from '../pages/welcome/welcome';
 export class MyApp {
   rootPage: any = WelcomePage;
 
-  // showSplash = true;
-  showSplash = false;
+  showSplash = true;
+  // showSplash = false;
 
   constructor(
     platform: Platform,
