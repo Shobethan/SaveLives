@@ -31,9 +31,6 @@ import { NotificationsPage } from '../pages/notifications/notifications';
 import { EventsCreatePage } from '../pages/events-create/events-create';
 import { BbrRequestsPage } from '../pages/bbr-requests/bbr-requests';
 
-import { PatientsPage } from '../pages/patients/patients';
-import { DiseasesPage } from '../pages/diseases/diseases';
-
 // imports miscellaneous packages for the app
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -60,9 +57,7 @@ import { Camera } from '@ionic-native/camera';
     SettingsPage,
     NotificationsPage,
     BbrRequestsPage,
-    TabsPage,
-    PatientsPage,
-    DiseasesPage
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -92,9 +87,7 @@ import { Camera } from '@ionic-native/camera';
     SettingsPage,
     NotificationsPage,
     BbrRequestsPage,
-    TabsPage,
-    PatientsPage,
-    DiseasesPage
+    TabsPage
   ],
   providers: [
     StatusBar,
