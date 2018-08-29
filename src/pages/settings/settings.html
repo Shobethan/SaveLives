@@ -13,24 +13,6 @@
     <h3 ion-text text-uppercase color="card-header" style="margin-top: 30px; padding-left: 10px;">Personal</h3>
     <ion-list no-border style="margin-bottom: 12px">
 
-      <!-- Enrolled needs : for donors -->
-      <button ion-item *ngIf="isDonor" (click)="push__needs_enrolled_page()">
-        <ion-icon name='md-heart' item-start color="primary"></ion-icon>
-        Enrolled Needs
-      </button>
-
-      <!-- Enrolled needs : for blood bank representatives -->
-      <button ion-item *ngIf="isBBR" (click)="push__needs_created_page()">
-        <ion-icon name='md-heart' item-start color="primary"></ion-icon>
-        Requested Needs
-      </button>
-
-      <!-- Blood bank representatives requests : for admins -->
-      <button ion-item *ngIf="isAdmin" (click)="push__bbr_requests_page()">
-        <ion-icon name='md-contacts' item-start color="brown"></ion-icon>
-        BBR requests
-      </button>
-
       <!-- Privacy settings -->
       <button ion-item>
         <ion-icon name='md-finger-print' item-start color="blue"></ion-icon>

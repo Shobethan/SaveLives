@@ -1,0 +1,73 @@
+<!-- header segment of the page -->
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only id="notification-button" (click)="push__notifications_page()" style="margin-left: 10px;">
+        <ion-icon name="md-notifications"></ion-icon>
+        <ion-badge id="notification-badge">{{ notificationsCount }}</ion-badge>
+      </button>
+    </ion-buttons>
+    <ion-title>PATIENTS</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<!-- body segment of the page -->
+<ion-content no-padding id="main">
+  <ion-grid no-padding>
+
+    <ion-searchbar [(ngModel)]="myInput" showCancelButton=true placeholder="Search" (ionInput)="onInput()" (ionCancel)="onCancel()">
+    </ion-searchbar>
+
+    <!-- Recent Patients -->
+    <h3 ion-text text-uppercase color="card-header" style="margin-top: 30px; margin-bottom:10px; padding-left: 12px;">Recent Patients</h3>
+    <ion-list>
+
+      <ion-item (click)="push__needs_single_page(notification)">
+        <ion-avatar item-start>
+          <img src="../../assets/imgs/anguBhai.png">
+        </ion-avatar>
+        <h2>Angathan Nesarasa</h2>
+        <p>Unique id : anga9491</p>
+      </ion-item>
+      <ion-item (click)="push__needs_single_page(notification)">
+        <ion-avatar item-start>
+          <img src="../../assets/imgs/shobethan.png">
+        </ion-avatar>
+        <h2>Shobethan Mohaneswaran</h2>
+        <p>Unique id : shob96127</p>
+      </ion-item>
+      <ion-item (click)="push__needs_single_page(notification)">
+        <ion-avatar item-start>
+          <img src="../../assets/imgs/kobiBhai.jpg">
+        </ion-avatar>
+        <h2>Kovarthanan Kengatharan</h2>
+        <p>Unique id : kova123</p>
+      </ion-item>
+      <ion-item (click)="push__needs_single_page(notification)">
+        <ion-avatar item-start>
+          <img src="../../assets/imgs/yasoBhai.jpg">
+        </ion-avatar>
+        <h2>Yasodharan Selvakumar</h2>
+        <p>Unique id : yaso8954</p>
+      </ion-item>
+
+
+      <!-- <ion-card class="ion-card-needs deco" *ngFor="let needEmg of needEmergencyData | async" (click)="push__needs_single_page(needEmg)">
+          <ion-card-content>
+            <ion-row no-padding no-margin>
+              <ion-col no-padding no-margin>
+                <h1 style="font-size: 60px;" ion-text text-uppercase color="primary">{{needEmg.bloodgroup}}</h1>
+                <br>
+              </ion-col>
+            </ion-row>
+            <h2 ion-text text-uppercase color="dark">{{needEmg.district}}</h2>
+            <br>
+            <p ion-text color="gray-aaa">On or Before</p>
+            <p ion-text padding-bottom color="dark">
+              <b>{{needEmg.needbefore}}</b>
+            </p>
+          </ion-card-content>
+        </ion-card> -->
+    </ion-list>
+  </ion-grid>
+</ion-content>

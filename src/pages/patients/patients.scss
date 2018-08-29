@@ -1,0 +1,20 @@
+page-patients {
+
+    // for the whole page
+    #main {
+        background: color($colors, bgcolor);
+    }
+
+    // For all profile pictures
+    .profile_picture {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border-style: solid;
+        border-width: medium;
+        border-color: #ffffff;
+        filter: drop-shadow(0px 3px 6px #ffa393) !important;
+        margin: 12px 0px 5px 0px;
+    }
+
+}
